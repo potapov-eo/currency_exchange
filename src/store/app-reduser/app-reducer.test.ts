@@ -21,14 +21,14 @@ beforeEach(() => {
 test('correct status should be added', () => {
     const action = setAppStatus("loading");
 
-    const endState = appReducer(startState, action)
+    const endState = appReducer(startState, action);
 
     expect(endState.status).toBe("loading");
 })
 test('correct error should be added', () => {
     const action = setAppError("something wrong");
 
-    const endState = appReducer(startState, action)
+    const endState = appReducer(startState, action);
 
     expect(endState).toEqual(
         {
@@ -36,7 +36,7 @@ test('correct error should be added', () => {
             status: 'succeeded',
             valute: {},
         })
-})
+});
 test('correct valute should be added', () => {
     const valute = {
         "AUD": {
@@ -56,11 +56,11 @@ test('correct valute should be added', () => {
             "Name": "Азербайджанский манат",
             "Value": 43.6473,
             "Previous": 43.6358
-        },}
+        },};
 
     const action = setValute(valute);
 
-    const endState = appReducer(startState, action)
+    const endState = appReducer(startState, action);
 
     expect(endState).toEqual(
         {
@@ -87,4 +87,4 @@ test('correct valute should be added', () => {
                 },}
             ,
         })
-})
+});

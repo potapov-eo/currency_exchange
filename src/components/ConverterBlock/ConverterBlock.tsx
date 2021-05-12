@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import style from "./ConverterBlock.module.css";
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@material-ui/core";
 import { valutePropertyType } from "../../store/app-reduser/app-reducer";
@@ -10,29 +10,35 @@ type ConverterBlockPropsType = {
     setCurrencyAmount?: (amount: number) => void
     value: number
     setRatesExchange: (exchange: number | null) => void
-}
+    setValute: (valute: string) => void
+    valute: string
+};
 export const ConverterBlock = (props: ConverterBlockPropsType) => {
-    let { valuteArr, isDisable = false, setCurrencyAmount, value, setRatesExchange } = { ...props }
+    let { valuteArr, isDisable = false, setCurrencyAmount, value, setRatesExchange, setValute, valute } = { ...props };
 
-    const [valute, setValute] = React.useState(''); //
+    const [Name, setName] = useState<string>("Доллар США");
+
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
         setValute(event.target.value as string);
-        const currentProperty = valuteArr.find(v => v.CharCode === event.target.value)
+    };
+
+    useEffect(() => {
+        const currentProperty = valuteArr.find(v => v.CharCode === valute)
+        currentProperty && setName(currentProperty.Name)
         const currentRatesExchange = currentProperty ? currentProperty.Value / currentProperty.Nominal : null
         setRatesExchange(currentRatesExchange)
+    }, [valute, setRatesExchange, valuteArr])
+
+    const handleChangeCurrencyAmount = (event: React.ChangeEvent<{ value: any }>) => {
+        if (/^[0-9]+$/.test(event.target.value)) {
+            setCurrencyAmount && setCurrencyAmount(event.target.value as number);
+        }
     };
-
-    const handleChangeCurrencyAmount = (event: React.ChangeEvent<{ value: unknown }>) => {
-        setCurrencyAmount && setCurrencyAmount(event.target.value as number);
-
-
-    };
-
 
     return (
         <div>
             <div className={style.xxx}>
-                Австралийский доллар
+                {Name}
                 <FormControl>
                     <InputLabel id="demo-simple-select-label">Select valute</InputLabel>
                     <Select
@@ -40,12 +46,11 @@ export const ConverterBlock = (props: ConverterBlockPropsType) => {
                         id="demo-simple-select"
                         value={valute}
                         onChange={handleChange}
-                    >{valuteArr.map(v => <MenuItem value={v.CharCode}>{v.CharCode}</MenuItem>)}
+                    >{valuteArr.map(v => <MenuItem key={v.ID} value={v.CharCode}>{v.CharCode}</MenuItem>)}
                     </Select>
                     <TextField
                         disabled={isDisable}
                         id="standard-error-helper-text"
-                        defaultValue="1"
                         onChange={handleChangeCurrencyAmount}
                         value={value}
                     />
@@ -54,4 +59,4 @@ export const ConverterBlock = (props: ConverterBlockPropsType) => {
 
         </div>
     )
-}
+};

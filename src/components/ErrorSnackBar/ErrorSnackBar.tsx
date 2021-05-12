@@ -1,24 +1,29 @@
-import style from './ErrorSnackBar.module.css'
-import {useDispatch} from "react-redux";
-import {setAppError} from "../../store/app-reduser/app-reducer";
+import React from "react";
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert, {AlertProps} from '@material-ui/lab/Alert';
+import {useDispatch, useSelector} from "react-redux";
+import { selectorError } from "../../store/app-reduser/app-selector";
+import { setAppError } from "../../store/app-reduser/app-reducer";
 
-
-
-type ErrorSnackBarPropsType = {
-    errorMessage: string
+function Alert(props: AlertProps) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
+export function ErrorSnackBar() {
+    const error = useSelector(selectorError);
+    const dispatch = useDispatch();
 
-export const ErrorSnackBar = (props: ErrorSnackBarPropsType) => {
-    const dispatch = useDispatch()
-
-    const onClickHandler = () => dispatch(setAppError(null))
+    const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        };
+        dispatch(setAppError(null));
+    };
 
     return (
-        <div className={style.notification}>
-        <div className={style.text}> {props.errorMessage} </div>
-        <div className={`${style.close}`}>
-            <div className={style.text} onClick={onClickHandler}>X</div>
-        </div>
-    </div>)
+        <Snackbar open={true} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="error">
+                {error}
+            </Alert>
+        </Snackbar>
+    );
 };
-
