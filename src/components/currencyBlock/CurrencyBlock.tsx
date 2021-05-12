@@ -6,7 +6,6 @@ import { round } from "../../utils/HelperFunctions";
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 
-
 type CurrencyBlockPropsType = { valuteProperty: valutePropertyType }
 
 export const CurrencyBlock = (props: CurrencyBlockPropsType) => {
@@ -28,17 +27,19 @@ export const CurrencyBlock = (props: CurrencyBlockPropsType) => {
     }
 
     const isRUB = secondCharCode === "RUB"
-    const firstValute = `${isRUB?Nominal:1} ${CharCode}`
-    const secondValute = `${round(isRUB?Value:Value*Nominal, 4)} ${secondCharCode}`
-    const difference = round((Value - Previous)*(isRUB?1:Nominal), 4)
+    const firstValute = `${isRUB ? Nominal : 1} ${CharCode}`
+    const secondValute = `${round(isRUB ? Value : Value * Nominal, 4)} ${secondCharCode}`
+    const difference = round((Value - Previous) * (isRUB ? 1 : Nominal), 4)
     const isDifferenceUp = difference >= 0
 
     return (
+
         <div className={style.xxx} onClick={ChangeValute}>
+
             <div style={{ opacity: "0.5" }}>{Name}</div>
             <div style={{ top: "50%" }}>
                 {firstValute} < HeightIcon style={{ color: "red", transform: "rotate(90deg)" }}
-                                                  color="primary"/> {secondValute}
+                                           color="primary"/> {secondValute}
             </div>
             <div>
                 {isDifferenceUp ? <ArrowUpwardIcon style={{ color: "green" }}/> :
