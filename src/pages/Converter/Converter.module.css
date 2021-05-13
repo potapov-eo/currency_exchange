@@ -9,16 +9,18 @@
     padding: 10px;
     margin: 20px;
 }
-.arrow_block{
+
+.arrow_block {
     cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content:center;
-    width:50px;
-    height:50px;
-    border-radius:25px;
-    background-color:#abcfab;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: #abcfab;
 }
+
 .double_arrow {
     transform: rotate(90deg);
     width: 40px;
