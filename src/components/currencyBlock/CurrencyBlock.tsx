@@ -8,7 +8,7 @@ import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 
 type CurrencyBlockPropsType = { valuteProperty: valutePropertyType };
 
-export const CurrencyBlock = (props: CurrencyBlockPropsType) => {
+export const CurrencyBlock =  React.memo( (props: CurrencyBlockPropsType) => {
     const [valuteProperty, setValuteProperty] = useState(props.valuteProperty);
 
     let { Name, CharCode, Nominal, Value, Previous } = { ...valuteProperty };
@@ -48,4 +48,4 @@ export const CurrencyBlock = (props: CurrencyBlockPropsType) => {
             </div>
         </div>
     )
-};
+});

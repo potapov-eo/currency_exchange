@@ -26,9 +26,8 @@ export const CurrencyList = () => {
         setSearchValute(selectValute);
     };
     const onClose = (event: any) => {
-        if (event.target.value === "") {setSearchValute(valuteArr)}
-        ;
-    };
+        if (event.target.value === "") {setSearchValute(valuteArr)};
+            };
 
     return (
         <div>

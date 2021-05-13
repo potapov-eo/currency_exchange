@@ -13,7 +13,7 @@ type ConverterBlockPropsType = {
     setValute: (valute: string) => void
     valute: string
 };
-export const ConverterBlock = (props: ConverterBlockPropsType) => {
+export const ConverterBlock = React.memo((props: ConverterBlockPropsType) => {
     let { valuteArr, isDisable = false, setCurrencyAmount, value, setRatesExchange, setValute, valute } = { ...props };
 
     const [Name, setName] = useState<string>("Доллар США");
@@ -60,4 +60,4 @@ export const ConverterBlock = (props: ConverterBlockPropsType) => {
 
         </div>
     )
-};
+});
