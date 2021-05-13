@@ -1,9 +1,37 @@
-.xxx {
+.valute_block {
+    display: flex;
+    justify-content: space-between;
     text-align: left;
     background-color: #abcfab;
-    height: 50px;
-    width: 500px;
+    height: 100%;
+    width: 400px;
     border-radius: 10px;
     padding: 10px;
     margin: 20px;
+}
+.name {
+    opacity: 0.7;
+}
+.double_arrow{
+        transform: rotate(90deg);
+    width: 40px;
+}
+.rates{
+    width: 200px;
+    justify-content: space-between;
+    display: flex;
+    margin: 5px;
+}
+.difference{
+    margin: 10px;
+    min-width: 80px;
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+}
+.up_arrow{
+    color:green;
+}
+.down_arrow{
+    color:red;
 }

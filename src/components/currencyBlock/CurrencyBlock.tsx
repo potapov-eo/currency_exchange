@@ -33,15 +33,17 @@ export const CurrencyBlock = (props: CurrencyBlockPropsType) => {
     }
 
     return (
-        <div className={style.xxx} onClick={ChangeValute}>
-            <div style={{ opacity: "0.5" }}>{Name}</div>
-            <div style={{ top: "50%" }}>
-                {firstValute} < HeightIcon style={{ color: "red", transform: "rotate(90deg)" }}
-                                           color="primary"/> {secondValute}
-            </div>
+        <div className={style.valute_block} onClick={ChangeValute}>
             <div>
-                {isDifferenceUp ? <ArrowUpwardIcon style={{ color: "green" }}/> :
-                    <ArrowDownwardIcon style={{ color: "red" }}/>}
+                <div className={style.name}>{Name}</div>
+                <div className={style.rates} >
+                    {firstValute} < HeightIcon className={style.double_arrow} color="primary"/> {secondValute}
+                </div>
+            </div>
+            <div className={style.difference}>
+                {isDifferenceUp ?
+                    <ArrowUpwardIcon className={style.up_arrow}/>
+                    :<ArrowDownwardIcon className={style.down_arrow}/>}
                 {difference}
             </div>
         </div>
