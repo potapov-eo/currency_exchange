@@ -31,29 +31,27 @@ export const CurrencyList = () => {
     };
 
     return (
-        <div className={style.xxx}>
-            <div style={{ width: 500, margin: "20px" }}>
-                <Autocomplete
-                    freeSolo
-                    onInputChange={onClose}
-                    onChange={handleChange}
-                    id="free-solo-2-demo"
-                    disableClearable
-                    options={valuteArr.map((option) => {
-                        return `${option.CharCode}   ${option.Name}`
-                    })}
-                    renderInput={(params) => (
+        <div>
+            <Autocomplete className={style.input_field}
+                          freeSolo
+                          onInputChange={onClose}
+                          onChange={handleChange}
+                          id="free-solo-2-demo"
+                          disableClearable
+                          options={valuteArr.map((option) => {
+                              return `${option.CharCode}   ${option.Name}`
+                          })}
+                          renderInput={(params) => (
+                              <TextField
+                                  {...params}
+                                  label="Search input"
+                                  margin="normal"
+                                  variant="outlined"
+                                  InputProps={{ ...params.InputProps, type: 'search' }}
+                              />
+                          )}
+            />
 
-                        <TextField
-                            {...params}
-                            label="Search input"
-                            margin="normal"
-                            variant="outlined"
-                            InputProps={{ ...params.InputProps, type: 'search' }}
-                        />
-                    )}
-                />
-            </div>
             {searchValute.map(valute => <CurrencyBlock key={valute.ID} valuteProperty={valute}/>)}
         </div>
     )

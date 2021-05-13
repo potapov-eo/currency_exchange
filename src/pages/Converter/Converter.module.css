@@ -1,9 +1,25 @@
-.xxx{
-    text-align: left;
-    background-color: #abcfab;
+.converter {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #e0e0e0;
     height: auto;
-    width: 250px;
+    width: 700px;
     border-radius: 10px;
     padding: 10px;
     margin: 20px;
+}
+.arrow_block{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    width:50px;
+    height:50px;
+    border-radius:25px;
+    background-color:#abcfab;
+}
+.double_arrow {
+    transform: rotate(90deg);
+    width: 40px;
 }

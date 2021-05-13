@@ -6,6 +6,7 @@ import { selectorError, selectorStatus } from "../store/app-reduser/app-selector
 import { PATH, Routes } from "../routes/Routes";
 import { ErrorSnackBar } from "../components/ErrorSnackBar/ErrorSnackBar";
 import { AppBar, LinearProgress, Toolbar } from "@material-ui/core";
+import style from "./App.module.css";
 
 function App() {
 
@@ -13,21 +14,23 @@ function App() {
     const error = useSelector(selectorError)
 
     return (<HashRouter>
-            <div className="App">
-                <AppBar color="secondary" position="static">
+            <div className={style.app}>
+                <AppBar position="static" className={style.bar}>
                     <Toolbar>
+                        <div className={style.nav}>
                     <span>
-                <NavLink to={PATH.PAGE_CURRENCY_LIST}>CURRENCY_LIST</NavLink>
+                <NavLink className={style.NavLink} to={PATH.PAGE_CURRENCY_LIST}>CURRENCY_LIST</NavLink>
             </span>
-                        <span>
-                <NavLink to={PATH.PAGE_CONVERTER}>CONVERTER</NavLink>
+                            <span>
+                <NavLink className={style.NavLink} to={PATH.PAGE_CONVERTER}>CONVERTER</NavLink>
             </span>
+                        </div>
                     </Toolbar>
                 </AppBar>
 
                 {error !== null && <ErrorSnackBar/>}
-                {status === 'loading' && <LinearProgress color="primary"
-                                                         style={{ top: "-3px" }}/>}
+                {status === 'loading' && <LinearProgress/>}
+
                 <Routes/>
             </div>
         </HashRouter>

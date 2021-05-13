@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import style from "./ConverterBlock.module.css";
-import { FormControl, InputLabel, MenuItem, Select, TextField } from "@material-ui/core";
+import { MenuItem, Select, TextField } from "@material-ui/core";
 import { valutePropertyType } from "../../store/app-reduser/app-reducer";
 
 
@@ -37,10 +37,9 @@ export const ConverterBlock = (props: ConverterBlockPropsType) => {
 
     return (
         <div>
-            <div className={style.xxx}>
-                {Name}
-                <FormControl>
-                    <InputLabel id="demo-simple-select-label">Select valute</InputLabel>
+            <div className={style.converter_block}>
+                <div className={style.name}> {Name} </div>
+                <div className={style.form}>
                     <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
@@ -49,12 +48,14 @@ export const ConverterBlock = (props: ConverterBlockPropsType) => {
                     >{valuteArr.map(v => <MenuItem key={v.ID} value={v.CharCode}>{v.CharCode}</MenuItem>)}
                     </Select>
                     <TextField
+                        className={style.texfield}
                         disabled={isDisable}
                         id="standard-error-helper-text"
                         onChange={handleChangeCurrencyAmount}
                         value={value}
                     />
-                </FormControl>
+
+                </div>
             </div>
 
         </div>
